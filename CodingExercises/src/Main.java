@@ -10,9 +10,17 @@ public class Main {
 //        System.out.println(areEqual);
 //        boolean areEqual = EqualSumChecker.hasEqualSum(1,-1,0);
 //        System.out.println(areEqual);
-        boolean hasTeen = TeenNumberChecker.hasTeen(22,23,34);
-        System.out.println(hasTeen);
-        boolean isTeen = TeenNumberChecker.isTeen(13);
-        System.out.println(isTeen);
+//        boolean hasTeen = TeenNumberChecker.hasTeen(22,23,34);
+//        System.out.println(hasTeen);
+//        boolean isTeen = TeenNumberChecker.isTeen(13);
+//        System.out.println(isTeen);
+//        double centimeters = Conversion.calcFeetAndInchesToCentimeters(5,11);
+//        System.out.println(centimeters);
+//        centimeters = Conversion.calcFeetAndInchesToCentimeters(71);
+//        System.out.println(centimeters);
+//        double area = Area.area(-1,4.0);
+//        System.out.println(area);
+//        YearsAndDays.printYearsAndDays(561600);
+        IntEqualityPrinter.printEqual(1,2,3);
     }
 }
