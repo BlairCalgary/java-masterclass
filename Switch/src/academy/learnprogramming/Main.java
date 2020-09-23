@@ -5,7 +5,36 @@ import java.sql.SQLOutput;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(sumDigits(666));
+        System.out.println(hasSameLastDigit(41,22,71));
+        System.out.println(hasSameLastDigit(23,32,42));
+        System.out.println(hasSameLastDigit(9,99,999));
+
+
+//        System.out.println(hasSharedDigit(12,23));
+//        System.out.println(hasSharedDigit(9,99));
+//        System.out.println(hasSharedDigit(15,55));
+//        System.out.println(hasSharedDigit(12,13));
+
+
+//        System.out.println(getEvenDigitSum(123456789));
+//        System.out.println(getEvenDigitSum(252));
+//        System.out.println(getEvenDigitSum(-22));
+
+//        System.out.println(sumFirstAndLastDigit(252));
+//        System.out.println(sumFirstAndLastDigit(257));
+//        System.out.println(sumFirstAndLastDigit(0));
+//        System.out.println(sumFirstAndLastDigit(5));
+//        System.out.println(sumFirstAndLastDigit(-10));
+
+
+//
+//        System.out.println(isPalindrome(-1221));
+//        System.out.println(isPalindrome(707));
+//        System.out.println(isPalindrome(11212));
+
+
+
+//        System.out.println(sumDigits(666));
 
 //        System.out.println(sumOdd(1,100));
 //        System.out.println(sumOdd(-1,100));
@@ -66,9 +95,74 @@ public class Main {
 //        }
 
     }
+    public static boolean hasSameLastDigit (int n1, int n2, int n3) {
+        if (!isValid(n1) || !isValid(n2) || !isValid(n3)) return false;
+        int lastDigit1 = n1 % 10, lastDigit2 = n2 % 10, lastDigit3 = n3 % 10;
+        if (lastDigit1 == lastDigit2) {
+            return true;
+        } else if (lastDigit1 == lastDigit3) {
+            return true;
+        } else if (lastDigit2 == lastDigit3) {
+            return true;
+        }
+        return false;
+    }
+    public static boolean isValid (int number) {
+        if ((number < 10) || (number > 1000)) return false;
+        return true;
+    }
+    public static boolean hasSharedDigit(int num1, int num2){
+        if ((num1 < 10) || (num1 > 99) || (num2 < 10) || (num2 > 99)) return false;
+        int digit1 = 0, digit2 = 0;
+        while (num1!=0) {
+            digit1 = num1 % 10;
+            int tempNum = num2;
+            while (tempNum!=0) {
+                digit2 = tempNum % 10;
+                if (digit1 == digit2) {
+                    return true;
+                }
+                tempNum /= 10;
+            }
+            num1 /= 10;
+        }
+        return false;
+    }
+    public static int getEvenDigitSum(int num){
+        int digit = 0, sum = 0;
+        if (num < 0) return -1;
+        while(num!=0) {
+            digit = num % 10;
+            if (digit%2==0) {
+                sum+=digit;
+            }
+            num /= 10;
+        }
+        return sum;
+    }
 
-    public static boolean isPalindrome(int number) {
-        
+    public static int sumFirstAndLastDigit(int num) {
+        if (num<0) {
+            return -1;
+        }
+        int lastDigit = num % 10, firstDigit = 0;
+        while(num!=0) {
+            firstDigit = num % 10;
+            num /= 10;
+        }
+        return lastDigit + firstDigit;
+    }
+
+    public static boolean isPalindrome(int num) {
+        int number = num;
+        int palindrome = 0;
+        int digit = 0;
+        while(number!=0) {
+            digit = number % 10; //-1221//-1
+            palindrome=palindrome*10+digit; // 0*10=0+3=3//3*10=30+2=32//32*10=320+1=321
+            number /= 10; // 12 // 1
+        }
+        return (palindrome==num);
     }
 
     public static int sumDigits(int number) {
@@ -87,6 +181,7 @@ public class Main {
         return sum;
 
     }
+
     public static boolean isOdd(int num) {
         if (num<=0) {
             return false;
