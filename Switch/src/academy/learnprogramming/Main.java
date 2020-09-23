@@ -1,13 +1,53 @@
 package academy.learnprogramming;
 
-import java.sql.SQLOutput;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(hasSameLastDigit(41,22,71));
-        System.out.println(hasSameLastDigit(23,32,42));
-        System.out.println(hasSameLastDigit(9,99,999));
+        minMax();
+//        sumOfUserInts();
+
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Enter your year of birth: ");
+//        boolean hasNextInt = scanner.hasNextInt();
+//        if (hasNextInt) {
+//            int yearOfBirth = scanner.nextInt();
+//            scanner.nextLine(); //handle next line character (enter key)
+//
+//            System.out.println("Enter your name: ");
+//            String name = scanner.nextLine();
+//            int age = 2020-yearOfBirth;
+//            if (age>=0 && age<=100) {
+//                System.out.println("Your name is " + name +", and you are "+age+" years old.");
+//            } else {
+//                System.out.println("Invalid year of birth");
+//            }
+//        } else {
+//            System.out.println("Unable to parse year of birth.");
+//        }
+//
+//        scanner.close();
+
+//        printSquareStar(5);
+//        printSquareStar(8);
+
+//        System.out.println(getLargestPrime(16)); //2
+//        System.out.println(getLargestPrime(21)); //7
+//        System.out.println(getLargestPrime(217)); //31
+//        System.out.println(getLargestPrime(0)); //-1
+//        System.out.println(getLargestPrime(45)); //5
+//        System.out.println(getLargestPrime(-1)); //-1
+
+//        System.out.println(canPack(1,0,4)); //false
+//        System.out.println(canPack(1,0,5)); //true
+//        System.out.println(canPack(0,5,4)); //true
+//        System.out.println(canPack(2,2,11)); //true
+//        System.out.println(canPack(-3,2,12)); //false
+
+//        System.out.println(hasSameLastDigit(41,22,71));
+//        System.out.println(hasSameLastDigit(23,32,42));
+//        System.out.println(hasSameLastDigit(9,99,999));
 
 
 //        System.out.println(hasSharedDigit(12,23));
@@ -94,6 +134,117 @@ public class Main {
 //                break;
 //        }
 
+    }
+
+    public static void minMax() {
+        int counter = 1, sum = 0, min = 0, max = 0;
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Enter number #"+counter+":");
+            boolean hasNextInt = scanner.hasNextInt();
+            if (hasNextInt) {
+                int userInt = scanner.nextInt();
+                if (counter==1) {
+                    min = userInt;
+                } else if (userInt<min) {
+                    min = userInt;
+                }
+                if (userInt>max) {
+                    max = userInt;
+                }
+                sum+=userInt;
+                counter++;
+                if (counter > 10) {
+                    break;
+                }
+            } else {
+                System.out.println("Invalid Number");
+                break;
+            }
+            scanner.nextLine(); // handle end of line (enter key)
+        }
+        System.out.println("Max is: "+max);
+        System.out.println("Min is: "+min);
+        scanner.close();
+
+
+    }
+
+    public static void sumOfUserInts() {
+        int counter = 1, sum = 0;
+        Scanner scanner = new Scanner(System.in);
+        while (counter <= 10) {
+            System.out.println("Enter number #"+counter+":");
+            boolean hasNextInt = scanner.hasNextInt();
+            if (hasNextInt) {
+                int userInt = scanner.nextInt();
+                sum+=userInt;
+                counter++;
+            } else {
+                System.out.println("Invalid Number");
+            }
+            scanner.nextLine(); // handle end of line (enter key)
+        }
+        System.out.println("Sum of numbers is: "+sum);
+        scanner.close();
+
+
+    }
+    public static void printSquareStar(int number) {
+        if (number < 5) {
+            System.out.println("Invalid Value");
+            return;
+        }
+
+        for (int y = 1; y <= number; y++) {
+            for (int x = 1; x <= number; x++) {
+                if ((x==1) || (x==number) || (y==1) || (y==number) || (x==y) || (x==number-y+1)) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
+    public static int getLargestPrime(int number) {
+
+        if (number < 2) return -1;
+        for (int x = number/2+1;x>1;x--) {
+            if (number%x==0){
+                boolean isAPrime = true;
+                for (int y = (x/2+1);y>1;y--) {
+                    if ((x%y==0) && (x!=y)) {
+                        isAPrime = false;
+                    }
+                }
+                if (isAPrime) {
+                    return x;
+                }
+            }
+
+        }
+        return number;
+    }
+    public static boolean canPack(int bigCount, int smallCount, int goal) {
+        if ((bigCount < 0) || (smallCount < 0) || (goal < 0)) return false;
+        int sum = 0;
+        int bigBag = 0;
+        int smallBag = 0;
+        for (int x = 1; x <= bigCount; x++) {
+            if (goal-sum >= 5) {
+                sum+=5;
+                bigBag++;
+            }
+        }
+        for (int x = 1; x <= smallCount; x++) {
+            if (goal-sum >= 1) {
+                sum+=1;
+                smallBag++;
+            }
+        }
+        if (bigBag*5+smallBag==goal) return true;
+        return false;
     }
     public static boolean hasSameLastDigit (int n1, int n2, int n3) {
         if (!isValid(n1) || !isValid(n2) || !isValid(n3)) return false;
